@@ -37,7 +37,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // Wildcard route to serve frontend client index.html for React routing
-app.get('/*', (req, res) => {
+app.get('/:any*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
