@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 
 // Create a single axios instance
 const api = axios.create({
-  baseURL: `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api`,
+  baseURL: import.meta.env.DEV ? 'http://localhost:5000/api' : '/api',
   withCredentials: true, // Crucial for sending and receiving cookies
   headers: {
     'Content-Type': 'application/json',
