@@ -4,12 +4,16 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 require('dotenv').config();
 const connectDB = require('./config/db');
+const { initCleanupJob } = require('./utils/cleanup');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Connect to MongoDB Database
-connectDB();
+connectDB().then(() => {
+  // Initialize automatic weekly database cleanup
+  initCleanupJob();
+});
 
 // CORS configuration - dynamic origin helper for cookie-based JWT authentication
 app.use(cors({
